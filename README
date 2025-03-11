@@ -1,0 +1,16 @@
+spillover version for online use
+
+Available to run at: https://spillover.streamlit.app
+
+Update with:
+
+git commit -a -m "commit"; git push https://danigeos:<token>@github.com/danigeos/spillover-streamlit-app.git
+
+GitHub repository created with: 
+
+cd spillover_python_online; git init; git add .; git commit -m "Initial commit"
+git remote add origin https://github.com/danigeos/spillover-online
+git branch -M main
+git push -u origin main
+
+Mostly developed here: https://chatgpt.com/canvas/shared/67d066b6b62c81918007c1ebde623893
