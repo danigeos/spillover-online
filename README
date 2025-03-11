@@ -1,12 +1,21 @@
 spillover version for online use
 
 Available to run at: https://spillover.streamlit.app
+Run locally with: streamlit run spillover.py 
+
 
 Update with:
 
 git commit -a -m "commit"; git push https://danigeos:<token>@github.com/danigeos/spillover-streamlit-app.git
 
+
+
 GitHub repository created with: 
+
+Write 3 lines in 'requirements.txt':
+streamlit
+numpy
+matplotlib
 
 cd spillover_python_online; git init; git add .; git commit -m "Initial commit"
 git remote add origin https://github.com/danigeos/spillover-online
