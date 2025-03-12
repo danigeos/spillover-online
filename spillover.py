@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+import urllib.parse
 
 # Streamlit UI elements
 st.title("Spillover: Simulation of Water Transfer and Erosion between Lakes")
@@ -69,7 +70,6 @@ for t in time_steps:
 
 # Plot results
 st.subheader("Simulation Results")
-import matplotlib.pyplot as plt
 fig, axs = plt.subplots(5, 1, figsize=(10, 12))
 
 axs[0].plot(time_steps / 3600, H1[:-1], label='Lake 1 Level (m)')
