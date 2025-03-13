@@ -7,16 +7,16 @@ st.title("Spillover: Water Transfer and Erosion between Lakes")
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    H1_init = st.number_input("Initial Level Lake 1 (m)", value=500, step=.1, format="%.6f")
-    H2_init = st.number_input("Initial Level Lake 2 (m)", value=200, step=.1)
-    H_thresh = st.number_input("Initial Threshold Level (m)", value=400, step=.1)
-    distance_between_lakes = st.number_input("Distance (m)", value=500, step=.1)
+    H1_init = st.number_input("Initial Level Lake 1 (m)", value=500., step=.1, format="%.6f")
+    H2_init = st.number_input("Initial Level Lake 2 (m)", value=200., step=.1)
+    H_thresh = st.number_input("Initial Threshold Level (m)", value=400., step=.1)
+    distance_between_lakes = st.number_input("Distance (m)", value=500., step=.1)
 with col2:
     A1 = st.number_input("Area Lake 1 (m²)", value=5e6, step=.1)
     A2 = st.number_input("Area Lake 2 (m²)", value=10e6, step=.1)
-    width_factor = st.number_input("Width factor", value=5, step=.1)
+    width_factor = st.number_input("Width factor", value=5., step=.1)
 with col3:
-    total_time = st.number_input("Final Time (h)", value=100, step=.1) * 3600
+    total_time = st.number_input("Final Time (h)", value=100., step=.1) * 3600
     erosion_factor = st.number_input("Erosion factor", value=0.01, step=.1)
     mannings_n = st.number_input("Manning's n", value=0.03, step=.1)
  
