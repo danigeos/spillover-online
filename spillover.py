@@ -5,16 +5,15 @@ import streamlit as st
 # Streamlit UI elements
 st.title("Spillover: Water Transfer and Erosion between Lakes")
 
-col1, col2, col3 = st.columns(3)
+col1, col2 = st.columns(2)
 with col1:
-    mannings_n = st.slider("Manning's n", 0.01, 0.1, 0.03, 0.005)
-    width_factor = st.slider("Width Factor", 1, 10, 5, 1)
+    mannings_n = st.number_input("Manning's n", 0.01, 0.1, 0.03, 0.005)
+    width_factor = st.number_input("Width Factor", 1, 10, 5, 1)
+    distance_between_lakes = st.number_input("Lake Distance (m)", 500, 5000, 1000, 100)
 with col2:
-    distance_between_lakes = st.slider("Lake Distance (m)", 500, 5000, 1000, 100)
-    erosion_factor = st.slider("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
-with col3:
-    total_time = st.slider("Simulation Time (s)", 10000, 100000, 36000, 5000)
-    dt = st.slider("Time Step (s)", 1, 60, 10, 1)
+    erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
+    total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
+    dt = st.number_input("Time Step (s)", 1, 60, 10, 1)
 
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
@@ -79,13 +78,16 @@ axs[0].set_ylabel('Level (m)')
 axs[0].legend()
 axs[0].grid()
 
-# Combined plot (Water Discharge, Erosion Rate, Flow Velocity)
+# Combined plot with different scales
+twin_ax = axs[1].twinx()
 axs[1].plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-axs[1].plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-axs[1].plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+twin_ax.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
+twin_ax.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
 axs[1].set_xlabel('Time (hours)')
-axs[1].set_ylabel('Value')
-axs[1].legend()
+axs[1].set_ylabel('Water Discharge (m³/s)', color='blue')
+twin_ax.set_ylabel('Erosion & Velocity', color='green')
+axs[1].legend(loc='upper left')
+twin_ax.legend(loc='upper right')
 axs[1].grid()
 
 st.pyplot(fig)
