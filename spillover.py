@@ -16,7 +16,7 @@ with col2:
     A2 = st.number_input("Area Lake 2 (m²)", 10e6)
     width_factor = st.number_input("Width factor", 5)
 with col3:
-    total_time = st.number_input("Final Time (s)", 36000)
+    total_time = st.number_input("Final Time (h)", 100) * 3600
     erosion_factor = st.number_input("Erosion factor", 0.01)
     mannings_n = st.number_input("Manning's n", 0.03)
  
