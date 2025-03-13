@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-import urllib.parse
 
 # Streamlit UI elements
 st.title("Spillover: Simulation of Water Transfer and Erosion between Lakes")
@@ -44,7 +43,7 @@ for t in time_steps:
     if H1[-1] > H_thresh:
         depth = H1[-1] - H_thresh  # Flow depth
         width = width_factor * depth  # Channel width
-        hydraulic_radius = depth / (1 + 2/width)  # Approximate hydraulic radius
+        hydraulic_radius = (depth * width) / (width + 2 * depth)  # Improved hydraulic radius calculation
         velocity = (1 / mannings_n) * (hydraulic_radius ** (2/3)) * (slope ** 0.5)
         Q = velocity * depth * width  # Discharge (m³/s)
         
@@ -70,38 +69,23 @@ for t in time_steps:
 
 # Plot results
 st.subheader("Simulation Results")
-fig, axs = plt.subplots(5, 1, figsize=(10, 12))
+fig, axs = plt.subplots(2, 1, figsize=(10, 10))
 
+# Water levels plot
 axs[0].plot(time_steps / 3600, H1[:-1], label='Lake 1 Level (m)')
 axs[0].plot(time_steps / 3600, H2[:-1], label='Lake 2 Level (m)')
-axs[0].plot(time_steps / 3600, H_thresh_values[:-1], label='Threshold Level (m)', linestyle='--', color='gray')
 axs[0].set_xlabel('Time (hours)')
 axs[0].set_ylabel('Water Level (m)')
 axs[0].legend()
 axs[0].grid()
 
+# Combined plot (Water Discharge, Erosion Rate, Flow Velocity)
 axs[1].plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
+axs[1].plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
+axs[1].plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
 axs[1].set_xlabel('Time (hours)')
-axs[1].set_ylabel('Discharge (m³/s)')
+axs[1].set_ylabel('Value')
 axs[1].legend()
 axs[1].grid()
-
-axs[2].plot(time_steps / 3600, H_thresh_values[:-1], label='Threshold Level (m)', color='red')
-axs[2].set_xlabel('Time (hours)')
-axs[2].set_ylabel('Threshold Level (m)')
-axs[2].legend()
-axs[2].grid()
-
-axs[3].plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-axs[3].set_xlabel('Time (hours)')
-axs[3].set_ylabel('Erosion Rate (m/s)')
-axs[3].legend()
-axs[3].grid()
-
-axs[4].plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
-axs[4].set_xlabel('Time (hours)')
-axs[4].set_ylabel('Flow Velocity (m/s)')
-axs[4].legend()
-axs[4].grid()
 
 st.pyplot(fig)
