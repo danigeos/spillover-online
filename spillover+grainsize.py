@@ -112,13 +112,13 @@ ax3 = ax1.twinx()
 
 ax3.spines["right"].set_position(("outward", 60))  # Offset third axis for clarity
 
-ax1.plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-ax2.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-ax3.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+ax1.plot(time_steps / 3600, Q_values, color='blue')
+ax2.plot(time_steps / 3600, erosion_rates/1000, color='green')
+ax3.plot(time_steps / 3600, velocity_values, color='purple')
 
 ax1.set_xlabel('Time (hours)')
 ax1.set_ylabel('Discharge (m³/s)', color='blue')
-ax2.set_ylabel('Erosion Rate (m/s)', color='green')
+ax2.set_ylabel('Erosion Rate (mm/s)', color='green')
 ax3.set_ylabel('Flow Velocity (m/s)', color='purple')
 
 ax1.legend(loc="upper left")
