@@ -45,11 +45,13 @@ for t in time_steps:
         depth = H1[-1] - H_thresh  # Flow depth
         width = width_factor * depth  # Channel width
         hydraulic_radius = (depth * width) / (width + 2 * depth)  # Improved hydraulic radius calculation
-        velocity = (1 / mannings_n) * (hydraulic_radius ** (2/3)) * (slope ** 0.5)
+        velocity = (g * depth) ** 0.5  # Critical flow velocity (v = sqrt(g * depth))
         Q = velocity * depth * width  # Discharge (m³/s)
         
         # Lower the threshold due to erosion
-        shear_stress = 1000 * g * slope * depth  # Approximate shear stress (Pa)
+        chezy_C = (1 / mannings_n) * (hydraulic_radius ** (1/6))
+        velocity = chezy_C * (hydraulic_radius ** 0.5) * (slope ** 0.5)
+        shear_stress = 1000 * g * hydraulic_radius * slope  # Approximate shear stress (Pa)
         erosion_rate = erosion_factor * (shear_stress ** 1.5)
         dH_thresh = erosion_rate * dt
         H_thresh -= dH_thresh
