@@ -5,7 +5,7 @@ import streamlit as st
 # Streamlit UI elements
 st.title("Spillover: Water Transfer and Erosion between Lakes")
 
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 with col1:
     H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
     H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
