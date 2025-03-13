@@ -49,7 +49,8 @@ for t in time_steps:
         Q = velocity * depth * width  # Discharge (m³/s)
         
         # Lower the threshold due to erosion
-        erosion_rate = erosion_factor * slope * depth * velocity
+        shear_stress = 1000 * g * slope * depth  # Approximate shear stress (Pa)
+erosion_rate = erosion_factor * (shear_stress ** 1.5)
         dH_thresh = erosion_rate * dt
         H_thresh -= dH_thresh
     else:
@@ -100,3 +101,4 @@ twin_ax2.legend(loc='upper right')
 axs[1].grid()
 
 st.pyplot(fig)
+
