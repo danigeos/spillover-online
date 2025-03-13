@@ -14,6 +14,9 @@ with col2:
     erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
     total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
     dt = st.number_input("Time Step (s)", 1, 60, 10, 1)
+    H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
+    H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
+    H_thresh = st.number_input("Initial Threshold Level (m)", 1, 50, 9, 1)
 
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
@@ -21,9 +24,6 @@ g = 9.81  # Gravity acceleration (m/s²)
 # Lake properties
 A1 = 1e6  # Surface area of Lake 1 (m²)
 A2 = 0.8e6  # Surface area of Lake 2 (m²)
-H1_init = 10  # Initial level of Lake 1 (m)
-H2_init = 5  # Initial level of Lake 2 (m)
-H_thresh = 9  # Initial threshold level between the lakes (m)
 
 # Time evolution storage
 time_steps = np.arange(0, total_time, dt)
@@ -79,15 +79,22 @@ axs[0].legend()
 axs[0].grid()
 
 # Combined plot with different scales
-twin_ax = axs[1].twinx()
+twin_ax1 = axs[1].twinx()
+twin_ax2 = axs[1].twinx()
+twin_ax2.spines.right.set_position(("outward", 60))
+
 axs[1].plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-twin_ax.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-twin_ax.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+twin_ax1.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
+twin_ax2.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+
 axs[1].set_xlabel('Time (hours)')
 axs[1].set_ylabel('Water Discharge (m³/s)', color='blue')
-twin_ax.set_ylabel('Erosion & Velocity', color='green')
+twin_ax1.set_ylabel('Erosion Rate (m/s)', color='green')
+twin_ax2.set_ylabel('Flow Velocity (m/s)', color='purple')
+
 axs[1].legend(loc='upper left')
-twin_ax.legend(loc='upper right')
+twin_ax1.legend(loc='upper center')
+twin_ax2.legend(loc='upper right')
 axs[1].grid()
 
 st.pyplot(fig)
