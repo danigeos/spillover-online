@@ -75,7 +75,7 @@ fig, axs = plt.subplots(2, 1, figsize=(10, 10))
 axs[0].plot(time_steps / 3600, H1[:-1], label='Lake 1 Level (m)')
 axs[0].plot(time_steps / 3600, H2[:-1], label='Lake 2 Level (m)')
 axs[0].set_xlabel('Time (hours)')
-axs[0].set_ylabel('Water Level (m)')
+axs[0].set_ylabel('Level (m)')
 axs[0].legend()
 axs[0].grid()
 
