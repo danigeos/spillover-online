@@ -50,7 +50,7 @@ for t in time_steps:
         
         # Lower the threshold due to erosion
         chezy_C = (1 / mannings_n) * (hydraulic_radius ** (1/6))
-        velocity = chezy_C * (hydraulic_radius ** 0.5) * (slope ** 0.5)
+        velocity = sqrt(g*depth)
         shear_stress = 1000 * g * hydraulic_radius * slope  # Approximate shear stress (Pa)
         erosion_rate = erosion_factor * (shear_stress ** 1.5)
         dH_thresh = erosion_rate * dt
