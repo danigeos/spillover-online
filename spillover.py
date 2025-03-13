@@ -13,26 +13,29 @@ with col1:
 with col2:
     erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
     total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
-    dt = st.number_input("Time Step (s)", 1, 60, 10, 1)
     H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
     H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
     H_thresh = st.number_input("Initial Threshold Level (m)", 1, 50, 9, 1)
 
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
+iterations = 1001  # Fixed number of iterations
+
+time_steps = np.linspace(0, total_time, iterations)
 
 # Lake properties
 A1 = 1e6  # Surface area of Lake 1 (m²)
 A2 = 0.8e6  # Surface area of Lake 2 (m²)
 
 # Time evolution storage
-time_steps = np.arange(0, total_time, dt)
 H1 = [H1_init]
 H2 = [H2_init]
 Q_values = []
 H_thresh_values = [H_thresh]
 erosion_rates = []
 velocity_values = []
+
+dt = total_time / (iterations - 1)  # Compute dt based on total_time and iterations
 
 for t in time_steps:
     # Compute slope dynamically
