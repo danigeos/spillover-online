@@ -112,6 +112,7 @@ ax3 = ax1.twinx()
 
 ax3.spines["right"].set_position(("outward", 60))  # Offset third axis for clarity
 
+erosion_rates /= 1e3
 ax1.plot(time_steps / 3600, Q_values, color='blue')
 ax2.plot(time_steps / 3600, erosion_rates, color='green')
 ax3.plot(time_steps / 3600, velocity_values, color='purple')
