@@ -7,15 +7,15 @@ st.title("Spillover: Water Transfer and Erosion between Lakes")
 
 col1, col2 = st.columns(2)
 with col1:
-    mannings_n = st.number_input("Manning's n", 0.01, 0.1, 0.03, 0.005)
-    width_factor = st.number_input("Width Factor", 1, 10, 5, 1)
-    distance_between_lakes = st.number_input("Lake Distance (m)", 500, 5000, 1000, 100)
-with col2:
-    erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
-    total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
     H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
     H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
     H_thresh = st.number_input("Initial Threshold Level (m)", 1, 50, 9, 1)
+    distance_between_lakes = st.number_input("Lake Distance (m)", 500, 5000, 1000, 100)
+with col2:
+    total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
+    width_factor = st.number_input("Width Factor", 1, 10, 5, 1)
+    erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
+    mannings_n = st.number_input("Manning's n", 0.01, 0.1, 0.03, 0.005)
 
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
@@ -86,13 +86,13 @@ twin_ax1 = axs[1].twinx()
 twin_ax2 = axs[1].twinx()
 twin_ax2.spines.right.set_position(("outward", 60))
 
-axs[1].plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-twin_ax1.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-twin_ax2.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+axs[1].plot(time_steps / 3600, Q_values, color='blue')
+twin_ax1.plot(time_steps / 3600, np.array(erosion_rates) / 1e3, color='green')
+twin_ax2.plot(time_steps / 3600, velocity_values, color='purple')
 
 axs[1].set_xlabel('Time (hours)')
 axs[1].set_ylabel('Water Discharge (m³/s)', color='blue')
-twin_ax1.set_ylabel('Erosion Rate (m/s)', color='green')
+twin_ax1.set_ylabel('Erosion Rate (mm/s)', color='green')
 twin_ax2.set_ylabel('Flow Velocity (m/s)', color='purple')
 
 axs[1].legend(loc='upper left')
