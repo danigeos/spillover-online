@@ -50,7 +50,7 @@ for t in time_steps:
         
         # Lower the threshold due to erosion
         shear_stress = 1000 * g * slope * depth  # Approximate shear stress (Pa)
-erosion_rate = erosion_factor * (shear_stress ** 1.5)
+        erosion_rate = erosion_factor * (shear_stress ** 1.5)
         dH_thresh = erosion_rate * dt
         H_thresh -= dH_thresh
     else:
