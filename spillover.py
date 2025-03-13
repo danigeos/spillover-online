@@ -73,8 +73,9 @@ for t in time_steps:
 fig, axs = plt.subplots(2, 1, figsize=(10, 10))
 
 # Water levels plot
-axs[0].plot(time_steps / 3600, H1[:-1], label='Lake 1 Level (m)')
-axs[0].plot(time_steps / 3600, H2[:-1], label='Lake 2 Level (m)')
+axs[0].plot(time_steps / 3600, H1[:-1], label='Lake 1 Level')
+axs[0].plot(time_steps / 3600, H2[:-1], label='Lake 2 Level')
+axs[0].plot(time_steps / 3600, H_thresh_values[:-1], label='Threshold')
 axs[0].set_xlabel('Time (hours)')
 axs[0].set_ylabel('Level (m)')
 axs[0].legend()
