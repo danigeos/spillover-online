@@ -16,7 +16,7 @@ with col2:
     A2 = float(st.text_input("Area Lake 2 (m²)", "10e6"))
     width_factor = float(st.text_input("Width factor", "5"))
 with col3:
-    total_time = float(st.text_input("Final Time (h)", "100")) * 3600
+    total_time = float(st.text_input("Final Time (h)", "10")) * 3600
     erosion_factor = float(st.text_input("Erosion factor", "1e-4"))
     mannings_n = float(st.text_input("Manning's n", "0.03"))
  
