@@ -7,14 +7,14 @@ st.title("Spillover: Water Transfer and Erosion between Lakes")
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
-    H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
-    H_thresh = st.number_input("Initial Threshold Level (m)", 1, 50, 9, 1)
-    distance_between_lakes = st.number_input("Lake Distance (m)", 500, 5000, 1000, 100)
+    H1_init = st.number_input("Initial Level Lake 1 (m)", -1e9, 1e9, 500, 10)
+    H2_init = st.number_input("Initial Level Lake 2 (m)", -1e9, 1e9, 200, 1)
+    H_thresh = st.number_input("Initial Threshold Level (m)", -1e9, 1e9, 50, 9, 10)
+    distance_between_lakes = st.number_input("Lake Distance (m)", .1, 1e9, 500, 100)
 with col2:
-    A1 = st.number_input("Area Lake 1 (m²)", 1_000_000, 1_000_000_000, 1_000_000, 100_000, format='%d')
-    A2 = st.number_input("Area Lake 2 (m²)", 800_000, 1_000_000_000, 800_000, 100_000, format='%d')
-    width_factor = st.number_input("Width Factor", 1, 10, 5, 1)
+    A1 = st.number_input("Area Lake 1 (m²)", 1, 1e19, 5e6, 1e6)
+    A2 = st.number_input("Area Lake 2 (m²)", 1, 1e19, 5e6, 1e6)
+    width_factor = st.number_input("Width Factor", .5, 100, 1, 1)
 with col3:
     total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
     erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
