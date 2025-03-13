@@ -70,7 +70,6 @@ for t in time_steps:
     velocity_values.append(velocity)
 
 # Plot results
-st.subheader("Simulation Results")
 fig, axs = plt.subplots(2, 1, figsize=(10, 10))
 
 # Water levels plot
@@ -86,13 +85,13 @@ twin_ax1 = axs[1].twinx()
 twin_ax2 = axs[1].twinx()
 twin_ax2.spines.right.set_position(("outward", 60))
 
-axs[1].plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-twin_ax1.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
-twin_ax2.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
+axs[1].plot(time_steps / 3600, Q_values, color='blue')
+twin_ax1.plot(time_steps / 3600, np.array(erosion_rates) / 1e3, color='green')
+twin_ax2.plot(time_steps / 3600, velocity_values, color='purple')
 
 axs[1].set_xlabel('Time (hours)')
 axs[1].set_ylabel('Water Discharge (m³/s)', color='blue')
-twin_ax1.set_ylabel('Erosion Rate (m/s)', color='green')
+twin_ax1.set_ylabel('Erosion Rate (mm/s)', color='green')
 twin_ax2.set_ylabel('Flow Velocity (m/s)', color='purple')
 
 axs[1].legend(loc='upper left')
