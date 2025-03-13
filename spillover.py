@@ -9,7 +9,7 @@ col1, col2, col3 = st.columns(3)
 with col1:
     H1_init = float(st.text_input("Initial Level Lake 1 (m)", "500"))
     H2_init = float(st.text_input("Initial Level Lake 2 (m)", "200"))
-    H_thresh = float(st.text_input("Initial Threshold Level (m)", "400"))
+    H_thresh = float(st.text_input("Initial Threshold Level (m)", "499"))
     distance_between_lakes = float(st.text_input("Distance (m)", "500"))
 with col2:
     A1 = float(st.text_input("Area Lake 1 (m²)", "5e6"))
@@ -17,8 +17,8 @@ with col2:
     width_factor = float(st.text_input("Width factor", "5"))
 with col3:
     total_time = float(st.text_input("Final Time (h)", "100")) * 3600
-    erosion_factor = float(st.text_input("Erosion factor", 0.01))
-    mannings_n = float(st.text_input("Manning's n", 0.03))
+    erosion_factor = float(st.text_input("Erosion factor", "1e-4"))
+    mannings_n = float(st.text_input("Manning's n", "0.03"))
  
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
