@@ -20,12 +20,7 @@ with col2:
 with col3:
     A1 = st.number_input("Area Lake 1 (m²)", 1_000_000, 1_000_000_000, 1_000_000, 100_000, format='%d')
     A2 = st.number_input("Area Lake 2 (m²)", 800_000, 1_000_000_000, 800_000, 100_000, format='%d')
-    erosion_factor = st.number_input("Erosion Rate", 0.001, 0.1, 0.01, 0.001)
-    total_time = st.number_input("Simulation Time (s)", 10000, 100000, 36000, 5000)
-    H1_init = st.number_input("Initial Level Lake 1 (m)", 1, 50, 10, 1)
-    H2_init = st.number_input("Initial Level Lake 2 (m)", 1, 50, 5, 1)
-    H_thresh = st.number_input("Initial Threshold Level (m)", 1, 50, 9, 1)
-
+ 
 # Constants
 g = 9.81  # Gravity acceleration (m/s²)
 iterations = 1001  # Fixed number of iterations
