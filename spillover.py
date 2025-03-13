@@ -32,10 +32,6 @@ iterations = 1001  # Fixed number of iterations
 
 time_steps = np.linspace(0, total_time, iterations)
 
-# Lake properties
-", 1_000_000, 1_000_000_000, 1_000_000, 100_000, format='%d')  # Surface area of Lake 1 (m²)
-", 800_000, 1_000_000_000, 800_000, 100_000, format='%d')  # Surface area of Lake 2 (m²)
-
 # Time evolution storage
 H1 = [H1_init]
 H2 = [H2_init]
