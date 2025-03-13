@@ -12,7 +12,7 @@ with col1:
     H1_init = float(H1_init)
     H2_init = st.text_input('Lake 2 Initial Level (m)', value='0')
     H2_init = float(H2_init)
-    H_thresh = st.text_input('Threshold Level (m)', value='9.5')
+    H_thresh = st.text_input('Threshold Initial Level (m)', value='9.5')
     H_thresh = float(H_thresh)
     distance_between_lakes = st.text_input('Distance between lakes (m)', value=100)
     distance_between_lakes = float(distance_between_lakes)
@@ -26,9 +26,9 @@ with col2:
 with col3:
     width_factor = st.text_input('Channel Width Factor', value='5')
     width_factor = int(width_factor)
-    grainsize = st.text_input('Grain Size (m)', value='0.001')
+    grainsize = st.text_input('Grain Size (m)', value='0.001')  #Mean sediment grain size (m)
     grainsize = float(grainsize)
-    C_erosion = st.text_input('Erosion Coefficient', value='1e-9')
+    C_erosion = st.text_input('Erosion Coefficient', value='1e-9') #Erosion coefficient (m^(2m) * kg^(-m) * s^(1+2m)) (empirical)
     C_erosion = float(C_erosion)
 
 # Total simulation time (seconds)
@@ -38,8 +38,6 @@ dt = total_time/1e4  # Time step (seconds)
 rho_water = 1000  # Density of water (kg/m³)
 rho_sediment = 2650  # Density of sediment (kg/m³)
 theta_crit = 0.045  # Shields critical parameter
-  # Mean sediment grain size (m)
-  # Erosion coefficient (m^(2m) * kg^(-m) * s^(1+2m)) (empirical)
 m_exponent = 1.5  # Erosion exponent
 
 
@@ -92,7 +90,7 @@ for t in time_steps:
     H2.append(H2[-1] + dH2)
     Q_values.append(Q)
     H_thresh_values.append(H_thresh)
-    erosion_rates.append(erosion_rate * 1000)  # Convert to mm/s
+    erosion_rates.append(erosion_rate)
     velocity_values.append(velocity)
 
 # Plot results
@@ -115,7 +113,7 @@ ax3 = ax1.twinx()
 ax3.spines["right"].set_position(("outward", 60))  # Offset third axis for clarity
 
 ax1.plot(time_steps / 3600, Q_values, label='Water Discharge (m³/s)', color='blue')
-ax2.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (mm/s)', color='green')
+ax2.plot(time_steps / 3600, erosion_rates, label='Erosion Rate (m/s)', color='green')
 ax3.plot(time_steps / 3600, velocity_values, label='Flow Velocity (m/s)', color='purple')
 
 ax1.set_xlabel('Time (hours)')
