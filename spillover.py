@@ -9,15 +9,15 @@ col1, col2, col3 = st.columns(3)
 with col1:
     H1_init = st.number_input("Initial Level Lake 1 (m)", 500)
     H2_init = st.number_input("Initial Level Lake 2 (m)", 200)
-    H_thresh = st.number_input("Initial Threshold Level (m)", 50)
-    distance_between_lakes = st.number_input("Lake Distance (m)", 500)
+    H_thresh = st.number_input("Initial Threshold Level (m)", 400)
+    distance_between_lakes = st.number_input("Distance (m)", 500)
 with col2:
     A1 = st.number_input("Area Lake 1 (m²)", 5e6)
-    A2 = st.number_input("Area Lake 2 (m²)", 5e6)
-    width_factor = st.number_input("Width Factor", 5)
+    A2 = st.number_input("Area Lake 2 (m²)", 10e6)
+    width_factor = st.number_input("Width factor", 5)
 with col3:
-    total_time = st.number_input("Simulation Time (s)", 36000)
-    erosion_factor = st.number_input("Erosion Rate", 0.01)
+    total_time = st.number_input("Final Time (s)", 36000)
+    erosion_factor = st.number_input("Erosion factor", 0.01)
     mannings_n = st.number_input("Manning's n", 0.03)
  
 # Constants
