@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 # Streamlit UI elements
-st.title("Spillover: Simulation of Water Transfer and Erosion between Lakes")
+st.title("Spillover: Water Transfer and Erosion between Lakes")
 
 col1, col2, col3 = st.columns(3)
 with col1:
